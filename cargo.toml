@@ -1,0 +1,14 @@
+[package]
+name = "Tau"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rust-sc2 = { git = "https://github.com/UltraMachine/rust-sc2" }
+
+# ML helper
+linfa = "0.7.1"
+
+# thread safety :thumbsup:
+[features]
+rayon = ["rust-sc2/rayon"]
