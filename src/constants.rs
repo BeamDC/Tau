@@ -1,5 +1,5 @@
 /// https://liquipedia.net/starcraft2/Range
-/// Unit Ranges - No Upgrades
+/// Terran Unit Ranges - No Upgrades
 pub const RANGE_SCV: f32                           = 0.1;
 pub const RANGE_HELLBAT: f32                       = 2.0;
 pub const RANGE_REAPER: f32                        = 4.5;
@@ -25,7 +25,7 @@ pub const RANGE_THOR_AIR_HIGH_IMPACT: f32          = 11.0;
 pub const RANGE_SIEGE_TANK_SIEGE: f32              = 13.0;
 
 
-/// Unit Ranges - Upgrades
+/// Terran Unit Ranges - Upgrades
 pub const RANGE_AUTO_TURRET_UPGRADE: f32           = 7.0;
 pub const RANGE_PLANETARY_UPGRADE: f32             = 7.0;
 pub const RANGE_MISSILE_TURRET_UPGRADE: f32        = 8.0;

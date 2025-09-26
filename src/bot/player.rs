@@ -3,7 +3,12 @@ use crate::bot::Bot;
 
 impl Player for Bot {
     fn get_player_settings(&self) -> PlayerSettings {
-        PlayerSettings::new(Race::Terran)
+        PlayerSettings {
+            name: Some("Tau"),
+            race: Race::Terran,
+            raw_affects_selection: false,
+            raw_crop_to_playable_area: false
+        }
     }
 
     fn on_start(&mut self) -> SC2Result<()> {
@@ -28,11 +33,11 @@ impl Player for Bot {
         match event {
             Event::UnitCreated(tag) => {
                 // label new workers as free
-                self.label_units(tag);
+                self.tag_unit(tag);
             }
             Event::ConstructionComplete(tag) => {
                 // add track all bases that we build
-                self.label_buildings(tag);
+                self.tag_building(tag);
             }
             Event::UnitDestroyed(tag, alliance) => {
                 let remove_mineral = |bot: &mut Bot, tag| {
@@ -64,6 +69,7 @@ impl Player for Bot {
                     }
                     // mineral mined out
                     Some(Alliance::Neutral) => remove_mineral(self, tag),
+                    Some(Alliance::Enemy) => {}
                     _ => {}
                 }
             }
