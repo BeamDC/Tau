@@ -10,7 +10,7 @@ fn main() -> SC2Result<()> {
     // VeryEasy, Easy, Medium, Hard, VeryHard
     let computer = Computer::new(Race::Random, Difficulty::VeryEasy, Some(AIBuild::RandomBuild));
     let options = LaunchOptions {
-        realtime: false,
+        realtime: true,
         ..Default::default()
     };
     run_vs_computer(&mut bot, computer, "TritonLE", options)

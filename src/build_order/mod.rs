@@ -8,9 +8,9 @@ pub enum BuildAction {
     None,                // do nothing
     Train(UnitTypeId),   // train a unit
     Build(UnitTypeId),   // construct a building
-    Research(UpgradeId), // research an upgrade
-    // Upgrade(_),          // upgrade a building
+    Upgrade(UpgradeId),  // research an upgrade
 }
+
 
 #[derive(Default, Clone)]
 pub enum BuildCondition {
@@ -19,6 +19,9 @@ pub enum BuildCondition {
     Supply(u32),
     Minerals(u32),
     Gas(u32),
+    BuildComplete(UnitTypeId),
+    TrainingComplete(UnitTypeId),
+    ResearchComplete(UpgradeId),
 }
 
 #[derive(Default, Clone)]
@@ -29,22 +32,6 @@ pub struct BuildStep {
 
 #[derive(Default, Clone)]
 pub struct BuildOrder {
-    pub name: String,
     pub steps: Vec<BuildStep>,
-}
-
-impl BuildOrder {
-    pub fn new(name: &str, steps: Vec<BuildStep>) -> Self {
-        // treat steps as a stack
-        let steps = steps
-            .iter()
-            .cloned()
-            .rev()
-            .collect::<Vec<BuildStep>>();
-
-        Self {
-            name: name.to_string(),
-            steps,
-        }
-    }
+    pub followup: Vec<BuildStep>,
 }
